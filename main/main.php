@@ -1,6 +1,6 @@
 <?php
 include "../connect/connect.php";
-include "../connect/session.php";
+
 
 $sql = "SELECT * FROM musical ORDER BY musicalId DESC";
 $result = $connect->query($sql);
@@ -142,42 +142,80 @@ if ($result->num_rows > 0) {
             </div>
         </section>
 
-        <section id="mainboardinfo">
-            <div class="mainboardinfo_inner">
-                <div class="container3">
-                    <div class="mainboardinfo_content">
-                        <div class="mainreviewboard">
-                            <h3 class="tilte"><a href="../QA/QA.php">후기</a></h3>
-                            <div class="mainReview_link">
-                                <h4><a href="#">후기 제목</a></h4>
-                                <span>후기 내용</span>
-                            </div>
-                            <div class="mainReview_link">
-                                <h4><a href="#">후기 제목</a></h4>
-                                <span>후기 내용</span>
-                            </div>
-                        </div>
-                        <div class="mainnoticeboard">
-                            <h3 class="tilte"><a href="../notice/notice.php">공지사항</a></h3>
-                            <div class="mainNotice_link">
-                                <h4><a href="#">후기 제목</a></h4>
-                                <span>후기 내용</span>
-                            </div>
-                            <div class="mainNotice_link">
-                                <h4><a href="#">후기 제목</a></h4>
-                                <span>후기 내용</span>
-                            </div>
-                        </div>
+        <section id="mainBoard">
+            <div class="mainBoard_inner">
+                <!-- <div class="container3"> -->
+                <div class="main_review_wrap">
+                    <h2 class="container3"><span>new</span> 후기 게시판 최신글!</h2>
+                    <div class="main_review_wrap_img">
+                        <figure>
+                            <img src="../assets/img/aaa11.jpg" alt="후기 게시판 바로가기">
+                            <figcaption>후기 게시판<a href="#">바로가기</a></figcaption>
+                        </figure>
                     </div>
-                    <div class="btn">
-                        <a href="#" class="left"><span class="ir">왼쪽 이미지</span></a>
-                        <a href="#" class="right"><span class="ir">오른쪽 이미지</span></a>
+                    <div class="main_review_text">
+                        <div class="text t1">
+                            <h3><a href="#"><em>💬</em> 안녕하세요 "뮤덕" 후기입니다.</a></h3>
+                            <p><a href="#">안녕하세요. 오늘도 행복했던 순간입니다. <br>
+                                    뮤덕을 관람한 후 놀라운 음악과 아름다운 무대 연출에 감탄했습니다. 감동적인 스토리와 캐릭터들의 흥미진진한 모험이 펼쳐져, 관객들은 마음을 울리는 여정에 몰입했습니다.<br>
+                                    뛰어난 연기력과 다채로운 무대 설정은 전체적으로 뮤지컬을 통해 특별한 순간을 만들어냈습니다.<br>
+                                    "뮤덕"은 음악과 이야기의 조화로운 조합으로, 뮤지컬 팬들에게 꼭 추천하고 싶은 작품입니다.</a></p>
+                        </div>
+                        <div class="text t2">
+                            <h3><a href="#"><em>💬</em> 안녕하세요 "오페라의 유령" 후기입니다!</a></h3>
+                            <p><a href="#">안녕하세요. 오늘도 행복했던 순간입니다. <br>
+                                    뮤덕을 관람한 후 놀라운 음악과 아름다운 무대 연출에 감탄했습니다. 감동적인 스토리와 캐릭터들의 흥미진진한 모험이 펼쳐져, 관객들은 마음을 울리는 여정에 몰입했습니다.<br>
+                                    뛰어난 연기력과 다채로운 무대 설정은 전체적으로 뮤지컬을 통해 특별한 순간을 만들어냈습니다.<br>
+                                    "뮤덕"은 음악과 이야기의 조화로운 조합으로, 뮤지컬 팬들에게 꼭 추천하고 싶은 작품입니다.</a></p>
+                        </div>
+                        <div class="text t3">
+                            <h3><a href="#"><em>💬</em> 안녕하세요 "레미제라블" 후기입니다!!!</a></h3>
+                            <p><a href="#">안녕하세요. 오늘도 행복했던 순간입니다. <br>
+                                    뮤덕을 관람한 후 놀라운 음악과 아름다운 무대 연출에 감탄했습니다. 감동적인 스토리와 캐릭터들의 흥미진진한 모험이 펼쳐져, 관객들은 마음을 울리는 여정에 몰입했습니다.<br>
+                                    뛰어난 연기력과 다채로운 무대 설정은 전체적으로 뮤지컬을 통해 특별한 순간을 만들어냈습니다.<br>
+                                    "뮤덕"은 음악과 이야기의 조화로운 조합으로, 뮤지컬 팬들에게 꼭 추천하고 싶은 작품입니다.</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <!-- </div> -->
             </div>
         </section>
-        <!-- //pointUp -->
+        <!-- //mainBoard -->
+
+        <section id="mainBoard2">
+            <div class="mainBoard_inner">
+                <!-- <div class="container3"> -->
+                    <div class="main_notice_wrap">
+                        <h2 class="container3"><span>new</span> 공지사항 최신글!</h2>
+                        <div class="main_notice_text">
+                            <div class="text n1">
+                                <h3><a href="#">후기게시판 관련 공지사항입니다.</a><span>2023.11.17</span></h3>
+                            </div>
+                            <div class="text n2">
+                                <h3><a href="#">뮤지컬 일 테노레(IL TENORE)2차 티켓오픈안내</a><span>2023.11.17</span></h3>
+                            </div>
+                            <div class="text n3">
+                                <h3><a href="#">뮤지컬 〈렌트〉 3차 티켓오픈 안내</a><span>2023.11.17</span></h3>
+                            </div>
+                            <div class="text n4">
+                                <h3><a href="#">뮤지컬 〈레베카〉 10주년 기념 공연 앙코르 티켓오픈 안내</a><span>2023.11.17</span></h3>
+                            </div>
+                        </div>
+                        <div class="main_notice_wrap_img">
+                            <figure>
+                                <img src="../assets/img/aaa11.jpg" alt="공지사항 바로가기">
+                                <figcaption>공지사항<a href="#">바로가기</a></figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- //mainBoard -->
+
+
+
 
         <section id="ticket_link">
             <div class="ticket_inner">
@@ -212,9 +250,9 @@ if ($result->num_rows > 0) {
     <!-- //footer -->
 
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1/bundled/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../script/commons.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
         // lenis 스무스 효과
         const lenis = new Lenis();
@@ -230,6 +268,8 @@ if ($result->num_rows > 0) {
 
         requestAnimationFrame(raf);
 
+
+        // swiper
         let swiper = new Swiper(".swiper", {
             loop: true, // 무한 루프 활성화
             navigation: {
