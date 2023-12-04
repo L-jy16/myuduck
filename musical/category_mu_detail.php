@@ -75,7 +75,6 @@ $count = $likeResult->num_rows;
                 <div class="mu__container">
                     <div class="poster">
                         <div>
-
                             <?php if ($count > 0) { ?>
                                 <button class="like-button clicked">
                                     ★ 찜버튼
@@ -100,6 +99,7 @@ $count = $likeResult->num_rows;
                     </div>
                 </div>
             </div>
+            
             <div class="title">
                 공연 정보 <span>Musical information</span>
             </div>

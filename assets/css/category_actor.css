@@ -95,6 +95,12 @@
     display: inline-block;
 }
 
+@media (max-width: 1280px) {
+    .category_inner.container{
+        transform: none;
+    }
+}
+
 @media (max-width: 1200px) {
     .category_inner h1 {
         font-size: 35px;

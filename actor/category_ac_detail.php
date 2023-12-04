@@ -34,14 +34,13 @@ if ($result->num_rows > 0) {
                 $acPerformPlace = $row2['acPerformPlace'];
                 $acPerformRole = $row2['acPerformRole'];
 
-                $sql3 = "SELECT muImg FROM musical WHERE muNameKo = '$acPerformName'";
+                // muNameKo를 기반으로 musicalId와 muImg 가져오기
+                $sql3 = "SELECT musicalId, muImg FROM musical WHERE muNameKo = '$acPerformName'";
                 $result3 = $connect->query($sql3);
-                $muImg = '';
+                $musicalData = $result3->fetch_assoc();
 
-                if ($result3->num_rows > 0) {
-                    $row3 = $result3->fetch_assoc();
-                    $muImg = $row3['muImg'];
-                }
+                $musicalId = $musicalData['musicalId'];
+                $muImg = $musicalData['muImg'];
 
                 // 연도만 추출
                 preg_match('/\d{4}/', $acPerformDate, $matches);
@@ -54,6 +53,7 @@ if ($result->num_rows > 0) {
                     'acPerformPlace' => $acPerformPlace,
                     'acPerformRole' => $acPerformRole,
                     'muImg' => $muImg,
+                    'musicalId' => $musicalId,
                 );
             }
         }
@@ -103,10 +103,8 @@ $count = $likeResult->num_rows;
     <div class="dtail_fix_image">
         <img src="../assets/img/aaa.jpg" alt="이미지" class="intro_img">
         <div class="intro_actor">
-
             <div class="image_wrap">
                 <div>
-
                     <?php if ($count > 0) { ?>
                         <button class="like-button clicked">
                             ★ 찜버튼
@@ -116,7 +114,6 @@ $count = $likeResult->num_rows;
                             ☆ 찜버튼
                         </button>
                     <?php } ?>
-
                 </div>
                 <img src="<?= $acImgDetail ?>" alt="<?= $acNameKo ?>상세 사진">
             </div>
@@ -127,7 +124,6 @@ $count = $likeResult->num_rows;
                 </div>
                 <p class="occupation">직업 : <?= $acOccupation ?></p>
                 <p class="birthdate">생년월일 : <?= $acDOB ?></p>
-
                 <!-- <a href="https://www.instagram.com/actor.zooooo/" class="sns"><img src="../assets/img/instar.svg" alt="">배우 인스타 바로가기</a> -->
             </div>
         </div>
@@ -144,10 +140,10 @@ $count = $likeResult->num_rows;
                     <?php foreach ($actorData['performances'] as $performance) : ?>
                         <div class="work-card">
                             <div class="ac_img_wrap">
-                                <img src="<?= $performance['muImg'] ?>" alt="<?= $performance['acPerformName'] ?> 이미지">
+                                <a href="../musical/category_mu_detail.php?musicalId=<?= $performance['musicalId'] ?>"><img src="<?= $performance['muImg'] ?>" alt="<?= $performance['acPerformName'] ?> 이미지"></a>
                             </div>
                             <div class="ac_text_wrap">
-                                <h3 class="ac_musical"><?= $performance['acPerformName'] ?></h3>
+                                <h3 class="ac_musical"><a href="../musical/category_mu_detail.php?musicalId=<?= $performance['musicalId'] ?>"><?= $performance['acPerformName'] ?></a></h3>
                                 <p class="ac_date"><?= $performance['acPerformDate'] ?></p>
                                 <p class="ac_theater"><?= $performance['acPerformPlace'] ?></p>
                                 <p class="ac_role"><?= $performance['acPerformRole'] ?></p>
@@ -173,100 +169,100 @@ $count = $likeResult->num_rows;
     <script>
         window.addEventListener('load', getInitialLikeStatus);
 
-        const likeButton = document.querySelector(".image_wrap .like-button");
-        let checkcount = <?= $count ?>;
+const likeButton = document.querySelector(".image_wrap .like-button");
+let checkcount = <?= $count ?>;
 
-        likeButton.addEventListener('click', function () {
-            if(<?= $loggedIn ? 'true' : 'false' ?>){
-                if (!likeButton.disabled) {
-                    likeButton.disabled = true;
+likeButton.addEventListener('click', function () {
+    if(<?= $loggedIn ? 'true' : 'false' ?>){
+        if (!likeButton.disabled) {
+            likeButton.disabled = true;
 
-                    const isClicked = likeButton.classList.contains('clicked');
+            const isClicked = likeButton.classList.contains('clicked');
 
-                    if (checkcount > 0) {
-                        likeButton.classList.remove('clicked');
-                        this.innerHTML = '☆ 찜버튼';
-                        sendLikeData(true);
-                        checkcount = 0;
-                    } else {
-                        likeButton.classList.add('clicked');
-                        this.innerHTML = '★ 찜버튼';
-                        sendLikeData(true);
-                        checkcount = 1;
-                    }
-
-                    // 이미 AJAX 요청 이후에 getInitialLikeStatus를 호출하므로 여기서는 호출하지 않아도 됩니다.
-                } 
+            if (checkcount > 0) {
+                likeButton.classList.remove('clicked');
+                this.innerHTML = '☆ 찜버튼';
+                sendLikeData(true);
+                checkcount = 0;
             } else {
-                    alert("로그인을 해주세요.");
-                    window.location.href = '../login/login.php';
-                }
-        });
+                likeButton.classList.add('clicked');
+                this.innerHTML = '★ 찜버튼';
+                sendLikeData(true);
+                checkcount = 1;
+            }
 
-        function sendLikeData(isClicked) {
-            const likeActorIdNum = <?= $actorId ?>;
-            const likeACImg = '<?= $acImgDetail ?>';
-            const likeACName = '<?= $acNameKo ?>';
+            // 이미 AJAX 요청 이후에 getInitialLikeStatus를 호출하므로 여기서는 호출하지 않아도 됩니다.
+        } 
+    } else {
+        alert("로그인을 해주세요.");
+        window.location.href = '../login/login.php';
+    }
+});
 
-            $.ajax({
-                type: 'POST',
-                url: '../like/likeAc.php',
-                data: {
-                    likeActorIdNum: likeActorIdNum,
-                    likeACImg: likeACImg,
-                    likeACName: likeACName,
-                    isClicked: isClicked
-                },
-                success: function (response) {
-                    console.log(response);
+function sendLikeData(isClicked) {
+    const likeActorIdNum = <?= $actorId ?>;
+    const likeACImg = '<?= $acImgDetail ?>';
+    const likeACName = '<?= $acNameKo ?>';
 
-                    if (response.status === 'success') {
-                        // AJAX 응답을 성공적으로 처리
-                    } else {
-                        // 에러 응답을 처리
-                    }
+    $.ajax({
+        type: 'POST',
+        url: '../like/likeAc.php',
+        data: {
+            likeActorIdNum: likeActorIdNum,
+            likeACImg: likeACImg,
+            likeACName: likeACName,
+            isClicked: isClicked
+        },
+        success: function (response) {
+            console.log(response);
 
-                    likeButton.disabled = false;
-                    getInitialLikeStatus();  // like 상태를 업데이트한 후에 getInitialLikeStatus를 호출합니다.
-                },
-                error: function (xhr, status, error) {
-                    console.error('AJAX 요청 실패:', error);
-                    likeButton.disabled = false;
-                }
-            });
+            if (response.status === 'success') {
+                // AJAX 응답을 성공적으로 처리
+            } else {
+                // 에러 응답을 처리
+            }
+
+            likeButton.disabled = false;
+            getInitialLikeStatus();  // like 상태를 업데이트한 후에 getInitialLikeStatus를 호출합니다.
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX 요청 실패:', error);
+            likeButton.disabled = false;
         }
+    });
+}
 
-        function getInitialLikeStatus() {
-            $.ajax({
-                type: 'POST',
-                url: '../like/likeAcStatus.php',
-                data: {
-                    likeActorId: <?= $actorId  ?>
-                },
-                success: function (response) {
-                    console.log(response);
+function getInitialLikeStatus() {
+    $.ajax({
+        type: 'POST',
+        url: '../like/likeAcStatus.php',
+        data: {
+            likeActorId: <?= $actorId  ?>
+        },
+        success: function (response) {
+            console.log(response);
 
-                    if (response.status === 'success') {
-                        const initialLikeStatus = response.initialLikeStatus;
+            if (response.status === 'success') {
+                const initialLikeStatus = response.initialLikeStatus;
 
-                        if (initialLikeStatus && initialLikeStatus.likeStatus === '1') {
-                            likeButton.classList.add('clicked');
-                            likeButton.innerHTML = '★ 찜버튼';
-                            checkcount = 1;
-                        } else {
-                            likeButton.classList.remove('clicked');
-                            likeButton.innerHTML = '☆ 찜버튼';
-                            checkcount = 0;
-                        }
-                    } else {
-                        // 에러 응답을 처리
-                    }
-                },
-                error: function (xhr, status, error) {
-                    console.error('AJAX 요청 실패:', error);
+                if (initialLikeStatus && initialLikeStatus.likeStatus === '1') {
+                    likeButton.classList.add('clicked');
+                    likeButton.innerHTML = '★ 찜버튼';
+                    checkcount = 1;
+                } else {
+                    likeButton.classList.remove('clicked');
+                    likeButton.innerHTML = '☆ 찜버튼';
+                    checkcount = 0;
                 }
-            });
+            } else {
+                // 에러 응답을 처리
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX 요청 실패:', error);
         }
+    });
+}
     </script>
 </body>
 

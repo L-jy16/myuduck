@@ -94,6 +94,9 @@
     height: 520px;
     border-bottom: 2px solid var(--black400);
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .my_favorites::before {
@@ -117,11 +120,14 @@
 /* favorites_list */
 .favorites_list {
     width: 100%;
-    height: 40%;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-top: 20px;
+}
+.favorites_list > span {
+    padding: 4vw 0;
+    color: var(--black200);
 }
 
 .favorites_list_info_title {

@@ -42,15 +42,14 @@
 
     <main class="bg">
         <div class="joinResultWrap container2">
-            <div class="message1">회원 탈퇴가 완료되었습니다!</div>
-            <div class="img blue"></div>
-            <div class="message2">다시 만나는 날까지 안녕..</div>
+            <div class="message1">회원 가입이 완료되었습니다!</div>
+            <div class="img red"></div>
+            <div class="message2">뮤덕과 함께 즐거운 뮤지컬 관람 되세요!</div>
             <div class="movehome">
                 <a href="../main/main.php">메인페이지로가기</a>
             </div>
         </div>
     </main>
-    <!-- //main-->
     <!-- //main-->
 
     <?php include "../include/footer.php"?>
