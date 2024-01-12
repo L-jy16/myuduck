@@ -9,15 +9,9 @@
 
 
 ## 사용 스택
-- Front-end : <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/>
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white"/>
-<img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-0769AD?style=flat&logo=JavaScript&logoColor=white">
-<img src="https://img.shields.io/badge/jQuery-1572B6?style=flat&logo=jQuery&logoColor=white"/>
-<img src="https://img.shields.io/badge/swiper-3498DB?style=flat&logo=swiper&logoColor=white"/>
-- Back-end :
-<img src="https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white"/>
-- Databse : 
-<img src="https://img.shields.io/badge/MySQL-00000F?style=flat&logo=MySQL&logoColor=white"/>
+- Front-end : <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white"/> <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-0769AD?style=flat&logo=JavaScript&logoColor=white"> <img src="https://img.shields.io/badge/jQuery-1572B6?style=flat&logo=jQuery&logoColor=white"/> <img src="https://img.shields.io/badge/swiper-3498DB?style=flat&logo=swiper&logoColor=white"/>
+- Back-end : <img src="https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white"/>
+- Databse : <img src="https://img.shields.io/badge/MySQL-00000F?style=flat&logo=MySQL&logoColor=white"/>
 
 ## 프로젝트 소개
 
@@ -41,15 +35,17 @@
     이용약관 동의 여부를 확인하기 위하여 JavaScript를 이용하여 동의 여부를 확인한 경우에 회원 정보 입력 페이지로 이동하도록하였습니다.전체 동의 체크 박스를 클릭하였을 경우에는 agreeCheck1 체크박스의 변경 이벤트를 감지하여, 해당 체크박스가 체크되면 나머지 체크박스들도 모두 체크되도록 처리되도록 하였고, 체크 박스들을 개별로 눌렀을 경우에는 agreeCheck2, agreeCheck3, agreeCheck4 중 하나라도 체크가 해제되면 agreeCheck1도 자동으로 체크 해제되도록 하였습니다.<br/>
     가입 버튼 클릭 시에는 agreeCheck1가 체크가 되었거나 agreeCheck2, agreeCheck3, agreeCheck4가 모두 체크가 되어 있을 경우에만 회원 정보 입력 페이지롤 넘어가게 하였습니다.<br />
     <br />
-    - 회원정보 입력 페이지 <br />
+    
+  - 회원정보 입력 페이지 <br />
     아이디, 비밀번호, 이름, 주소, 이메일, 연락처 등 다양한 필드를 가진 회원가입 양식으록 구성되어 있으며 아이디, 이메일 중복검사 기능과 Daum 우편번호 API를 사용하여 주소를 검색하는 기능을 제공하고 있습니다.<br />
     아이디 및 이메일 유효성 검사를 하기 위하여 Jquery를 이용하여 idChecking()와 emailChecking() 함수를 사용하여 아이디와 이메일이 유효성 검사와 중복 여부를 서버에서 확인하는 Ajax 요청을 수행하였습니다. <br />
     아이디와 이메일의 유효성 검사와 중복 검사 여부를 기반으로 하여 비밀번호, 이름, 휴대폰 번호, 우편번호 등을 joinChecks() 함수를 사용하여 입력 필드의 유효성을 검사하였습니다. <br />
     Daum 우편번호 API를 사용하여 우편번호를 검색하였습니다. searchBtnClick() 함수가 호출되면 Daum 우편번호 서비스 창이 열려 사용자가 선택한 주소가 입력 필드를 채우는 형식으로 하였습니다. <br />
-- 로그인 페이지
+    
+  - 로그인 페이지 <br />
     로그인 페이지는 아이디와 비밀번호를 입력받는 양식과 로그인 버튼이 구성되어 있습니다. 또한, 로그인 상태를 유지할지 선택할 수 있는 체크박스와 함께 회원가입, 아이디 찾기, 비밀번호 찾기에 대한 링크도 제공되어 있습니다. 사용자가 아이디와 비밀번호를 입력하고 로그인 버튼을 클릭하면, 입력된 정보를 데이터베이스에서 확인하여 로그인 여부를 결정하고, 성공 시 세션에 사용자 정보를 저장한 후 메인 페이지로 이동합니다.<br />
     JavaScript를 사용하여 로그인 버튼(#loginBtn)에 클릭하면 이벤트가 발생하여 사용자가 입력한 아이디(#youId)와 비밀번호(#youPass)를 가져와서 두 값이 모두 비어있는지 확인해주고 비어있지 않으면 데이터베이스를 연결하여 입력한 값이 데이터베이스 안에 들어있는 값과 비교하는 PHP로 넘겨주어 로그인 여부를 확인하고 성공 시 세션에 사용자 정보를 저장한 후 메인 페이지로 이동합니다.<br />
-- 로그아웃 페이지
+  - 로그아웃 페이지<br />
     로그아웃을 누르면 세션에 저장되어 있던 사용자의 정보를 전부 지워지게 만든 후 메인 페이지로 이동하게 하였습니다.<br />
 ### 게시판
 - 후기 게시판
