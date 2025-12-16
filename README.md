@@ -4,8 +4,8 @@
 
 <img width="500" src="./assets/img/MainPage.png">
 
-## 사이트 바로가기
-사이트 바로가기 : [MYUDUCK](http://ljy16.dothome.co.kr/myuduck/main/main.php)
+<!--## 사이트 바로가기
+사이트 바로가기 : [MYUDUCK](http://ljy16.dothome.co.kr/myuduck/main/main.php) -->
 
 
 ## 사용 스택
